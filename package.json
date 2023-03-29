@@ -1,8 +1,14 @@
 {
   "name": "@deezy-inc/web-ai",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "AI in the browser, powered by micropayments",
-  "main": "build.js",
+  "types": "./lib/index.d.ts",
+  "main": "lib/web-ai.cjs.js",
+  "module": "lib/esm/web-ai.mjs",
+  "exports": {
+    "import": "./lib/esm/web-ai.mjs",
+    "require": "./lib/web-ai.cjs.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
