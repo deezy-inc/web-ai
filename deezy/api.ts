@@ -17,7 +17,8 @@ export async function sendAndPayRequest(request: DeezyAIRequest) {
         console.log(`Expecting 402 here`)
         const bolt11Invoice = err.response.headers['bolt11-auth']
         console.log('Sending payment')
-        
+
+        await window.webln.enable()
         await window.webln.sendPayment(bolt11Invoice)
         const resp = await axios.post(DEEZY_API, request, { headers: { 'bolt11-auth': bolt11Invoice }})
         console.log(resp.data)
