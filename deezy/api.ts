@@ -3,14 +3,14 @@ import axios from 'axios'
 const DEEZY_API = 'https://api.deezy.io/v1/webai'
 
 export type DeezyAIRequest = {
-    requestId?: string;
+    request_id?: string;
     provider: string;
     api_path: string;
     data: any;
 }
 
 export async function sendAndPayRequest(request: DeezyAIRequest) {
-    request.requestId = window.crypto.randomUUID()
+    request.request_id = window.crypto.randomUUID()
     const data = await axios.post(DEEZY_API, request).catch(async (err) => {
         //console.log(err)
         console.log(err.response.headers)
