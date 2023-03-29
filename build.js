@@ -9,7 +9,7 @@ let common = {
     sourcemap: 'external',
 };
 
-esbuild
+esbuild && esbuild
     .build({
         ...common,
         outfile: 'lib/esm/web-ai.mjs',
@@ -23,7 +23,7 @@ esbuild
         console.log('esm build success.');
     });
 
-esbuild
+esbuild && esbuild
     .build({
         ...common,
         outfile: 'lib/web-ai.cjs.js',
@@ -32,7 +32,7 @@ esbuild
     })
     .then(() => console.log('cjs build success.'));
 
-esbuild
+esbuild && esbuild
     .build({
         ...common,
         outfile: 'lib/web-ai.bundle.js',
