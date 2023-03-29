@@ -10,7 +10,7 @@ export type DeezyAIRequest = {
 }
 
 export async function sendAndPayRequest(request: DeezyAIRequest) {
-    // request.requestId = crypto.randomUUID()
+    request.requestId = window.crypto.randomUUID()
     const data = await axios.post(DEEZY_API, request).catch(async (err) => {
         //console.log(err)
         console.log(err.response.headers)
