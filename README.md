@@ -10,13 +10,20 @@ npm install @deezy-inc/web-ai # or yarn add @deezy-inc/web-ai
 
 ## Usage
 
+For a live demo, see: https://github.com/deezy-inc/web-ai-demo-site
+
 NodeJs & Browser
 
 ```js
-const webai = require('@deezy-inc/web-ai');
-const { utils } = webai;
+import { openai } from '@deezy-inc/web-ai'
 
-console.log(utils.normalizeURL('https://google.com'));
+const response = await openai.createChatCompletion({
+    model: 'gpt-3.5-turbo',
+    messages: [{
+        "role": "system",
+        "content": "You are Web AI - a version of ChatGPT gated by lightning micropayments"
+    }]
+})
 ```
 
 ## Developing
