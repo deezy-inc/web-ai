@@ -10,7 +10,9 @@
     "require": "./lib/web-ai.cjs.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "just build && just emit-types",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +28,10 @@
     "esbuild": false
   },
   "devDependencies": {
+    "@types/jest": "^29.5.0",
     "esbuild": "^0.17.14",
-    "jest": "^29.5.0"
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.3"
   }
 }
