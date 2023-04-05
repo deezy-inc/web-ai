@@ -5,6 +5,10 @@
   "types": "./lib/index.d.ts",
   "main": "lib/web-ai.cjs.js",
   "module": "lib/esm/web-ai.mjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deezy-inc/web-ai.git"
+  },
   "exports": {
     "import": "./lib/esm/web-ai.mjs",
     "require": "./lib/web-ai.cjs.js"
