@@ -1,5 +1,5 @@
 {
-  "name": "topether21-web-ai",
+  "name": "@deezy-inc/web-ai",
   "version": "1.12.1",
   "description": "AI in the browser, powered by micropayments",
   "types": "./lib/index.d.ts",
