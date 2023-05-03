@@ -11,6 +11,7 @@ import {
   CreateEmbeddingRequest,
   CreateImageRequest,
   CreateModerationRequest,
+  setPayoutLightningAddress
 } from "./openai";
 import { sendAndPayRequest } from "../deezy/api";
 
@@ -22,6 +23,8 @@ jest.mock("../deezy/api");
 const mockedSendAndPayRequest = sendAndPayRequest as jest.MockedFunction<
   typeof sendAndPayRequest
 >;
+const PAYOUT_LIGHTNING_ADDRESS = "danny@deezy.io"
+setPayoutLightningAddress(PAYOUT_LIGHTNING_ADDRESS)
 
 describe("OpenAI API", () => {
   afterEach(() => {
@@ -32,13 +35,14 @@ describe("OpenAI API", () => {
     const requestData: CreateChatCompletionRequest = dummyData.chatCompletion;
     const expectedResponse = dummyResponses.createChatCompletion;
     mockedSendAndPayRequest.mockResolvedValueOnce(expectedResponse);
-    const result = await createChatCompletion(requestData);
+    let result = await createChatCompletion(requestData);
 
     expect(mockedSendAndPayRequest).toHaveBeenCalledTimes(1);
     expect(mockedSendAndPayRequest).toHaveBeenCalledWith({
       provider: "openai",
       api_path: "v1/chat/completions",
       data: requestData,
+      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -54,6 +58,7 @@ describe("OpenAI API", () => {
       provider: "openai",
       api_path: "v1/completions",
       data: requestData,
+      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -69,6 +74,7 @@ describe("OpenAI API", () => {
       provider: "openai",
       api_path: "v1/edits",
       data: requestData,
+      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -84,6 +90,7 @@ describe("OpenAI API", () => {
       provider: "openai",
       api_path: "v1/embeddings",
       data: requestData,
+      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -99,6 +106,7 @@ describe("OpenAI API", () => {
       provider: "openai",
       api_path: "v1/images/generations",
       data: requestData,
+      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -114,6 +122,7 @@ describe("OpenAI API", () => {
       provider: "openai",
       api_path: "v1/moderations",
       data: requestData,
+      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
     });
     expect(result).toEqual(expectedResponse);
   });

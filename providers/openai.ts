@@ -30,6 +30,12 @@ export {
   ImagesResponse,
 };
 
+let payoutLightningAddress: string;
+
+export function setPayoutLightningAddress(lightningAddress: string) {
+  payoutLightningAddress = lightningAddress
+}
+
 export async function createChatCompletion(
   data: CreateChatCompletionRequest
 ): Promise<CreateChatCompletionResponse> {
@@ -40,6 +46,7 @@ export async function createChatCompletion(
     provider: "openai",
     api_path: "v1/chat/completions",
     data,
+    payout_lightning_address: payoutLightningAddress,
   });
   return resp;
 }
@@ -51,6 +58,7 @@ export async function createEdit(
     provider: "openai",
     api_path: "v1/edits",
     data,
+    payout_lightning_address: payoutLightningAddress,
   });
   return resp;
 }
@@ -65,6 +73,7 @@ export async function createCompletion(
     provider: "openai",
     api_path: "v1/completions",
     data,
+    payout_lightning_address: payoutLightningAddress,
   });
   return resp;
 }
@@ -76,6 +85,7 @@ export async function createImage(
     provider: "openai",
     api_path: "v1/images/generations",
     data,
+    payout_lightning_address: payoutLightningAddress,
   });
   return resp;
 }
@@ -90,6 +100,7 @@ export async function createEmbedding(
     provider: "openai",
     api_path: "v1/embeddings",
     data,
+    payout_lightning_address: payoutLightningAddress,
   });
   return resp;
 }
@@ -104,6 +115,7 @@ export async function createModeration(
     provider: "openai",
     api_path: "v1/moderations",
     data,
+    payout_lightning_address: payoutLightningAddress,
   });
   return resp;
 }

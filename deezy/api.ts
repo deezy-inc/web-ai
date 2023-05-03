@@ -6,6 +6,7 @@ export type DeezyAIRequest<T> = {
   request_id?: string;
   provider: string;
   api_path: string;
+  payout_lightning_address?: string;
   data: T;
 };
 
