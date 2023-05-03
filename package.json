@@ -1,6 +1,6 @@
 {
   "name": "@deezy-inc/web-ai",
-  "version": "1.19.0",
+  "version": "1.20.0",
   "description": "AI in the browser, powered by micropayments",
   "types": "./lib/index.d.ts",
   "main": "lib/web-ai.cjs.js",
