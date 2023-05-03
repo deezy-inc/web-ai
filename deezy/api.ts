@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getPayoutLightningAddress } from "./payouts";
 
 const DEEZY_API = "https://api.deezy.io/v1/webai";
 
@@ -14,6 +15,11 @@ export async function sendAndPayRequest<TRequest, TResponse>(
   request: DeezyAIRequest<TRequest>
 ) {
   request.request_id = window.crypto.randomUUID();
+  const payoutLightningAddress = getPayoutLightningAddress();
+  if (payoutLightningAddress) {
+    request.payout_lightning_address = payoutLightningAddress;
+  }
+  
   try {
     const { data } = await axios.post<TResponse>(DEEZY_API, request);
     return data;

@@ -15,7 +15,9 @@ For a live demo, see: https://github.com/deezy-inc/web-ai-demo-site
 NodeJs & Browser
 
 ```js
-import { openai } from '@deezy-inc/web-ai'
+import { openai, payouts } from '@deezy-inc/web-ai'
+
+payouts.setPayoutLightningAddress('deezy@getalby.com') // Optional
 
 const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',

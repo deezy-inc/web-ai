@@ -10,8 +10,7 @@ import {
   CreateEditRequest,
   CreateEmbeddingRequest,
   CreateImageRequest,
-  CreateModerationRequest,
-  setPayoutLightningAddress
+  CreateModerationRequest
 } from "./openai";
 import { sendAndPayRequest } from "../deezy/api";
 
@@ -23,8 +22,6 @@ jest.mock("../deezy/api");
 const mockedSendAndPayRequest = sendAndPayRequest as jest.MockedFunction<
   typeof sendAndPayRequest
 >;
-const PAYOUT_LIGHTNING_ADDRESS = "danny@deezy.io"
-setPayoutLightningAddress(PAYOUT_LIGHTNING_ADDRESS)
 
 describe("OpenAI API", () => {
   afterEach(() => {
@@ -36,13 +33,11 @@ describe("OpenAI API", () => {
     const expectedResponse = dummyResponses.createChatCompletion;
     mockedSendAndPayRequest.mockResolvedValueOnce(expectedResponse);
     let result = await createChatCompletion(requestData);
-
     expect(mockedSendAndPayRequest).toHaveBeenCalledTimes(1);
     expect(mockedSendAndPayRequest).toHaveBeenCalledWith({
       provider: "openai",
       api_path: "v1/chat/completions",
-      data: requestData,
-      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
+      data: requestData
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -57,8 +52,7 @@ describe("OpenAI API", () => {
     expect(mockedSendAndPayRequest).toHaveBeenCalledWith({
       provider: "openai",
       api_path: "v1/completions",
-      data: requestData,
-      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
+      data: requestData
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -73,8 +67,7 @@ describe("OpenAI API", () => {
     expect(mockedSendAndPayRequest).toHaveBeenCalledWith({
       provider: "openai",
       api_path: "v1/edits",
-      data: requestData,
-      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
+      data: requestData
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -89,8 +82,7 @@ describe("OpenAI API", () => {
     expect(mockedSendAndPayRequest).toHaveBeenCalledWith({
       provider: "openai",
       api_path: "v1/embeddings",
-      data: requestData,
-      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
+      data: requestData
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -105,8 +97,7 @@ describe("OpenAI API", () => {
     expect(mockedSendAndPayRequest).toHaveBeenCalledWith({
       provider: "openai",
       api_path: "v1/images/generations",
-      data: requestData,
-      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
+      data: requestData
     });
     expect(result).toEqual(expectedResponse);
   });
@@ -121,8 +112,7 @@ describe("OpenAI API", () => {
     expect(mockedSendAndPayRequest).toHaveBeenCalledWith({
       provider: "openai",
       api_path: "v1/moderations",
-      data: requestData,
-      payout_lightning_address: PAYOUT_LIGHTNING_ADDRESS
+      data: requestData
     });
     expect(result).toEqual(expectedResponse);
   });
